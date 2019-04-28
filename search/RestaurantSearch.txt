@@ -21,14 +21,14 @@
    <div id="main-container-row" class="row h-100">
     <div class="col-md-2 col-sm-1 d-none d-sm-block side-panel"></div>
 	<div id="content" class="col-md-8 col-sm-10 col-12">
-     <br /><br /><br /><br />
-	 <br /><br /><br /><br />
-	 <br /><br /><br /><br />
-	 <br /><br /><br /><br />
-	 <br /><br /><br /><br />
-	 <br /><br /><br /><br />
-	 <br /><br /><br /><br />
-	 <br /><br /><br /><br />
+    <div class="input-group col-md-4">
+	 <input class="form-control py-2 border-right-0 border" type="search" value="800 Drillfield Dr, Blacksburg, VA 24061" id="example-search-input">
+	 <span class="input-group-append">
+	  <button class="btn btn-outline-secondary border" type="button">
+	   <span>Search</span>
+	  </button>
+	 </span>
+    </div>
 	 
 	</div>
 	<div class="col-md-2 col-sm-1 d-none d-sm-block side-panel"></div>
