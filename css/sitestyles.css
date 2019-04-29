@@ -1,18 +1,18 @@
 #header-container {
 	background-color: #8fc1e3;
-	height: 50px;
+	height: 56px;
 	position: fixed;
 	top: 0px;
 }
 
 #main-container {
-	padding-top: 50px;
+	padding-top: 56px;
 	background-color: #EEEEEE;
 	min-height: calc(100vh - 70px);
 	overflow: auto;
 }
 
-#main-container div {
+#main-container > div {
 	min-height: calc(100vh - 70px);
 }
 
@@ -61,4 +61,13 @@
 		float: center;
 		text-align: center;
 	}
+}
+
+.search-result-thumbnail {
+	height: 100px;
+	width: 100px;
+}
+
+.search-result-claim {
+	font-weight: bold;
 }
