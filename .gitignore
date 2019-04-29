@@ -1,2 +1,2 @@
-lib/api_config.php
-lib/mysql_config.php
+resources/lib/api_config.php
+resources/lib/mysql_config.php
