@@ -1,5 +1,5 @@
 <?php
-require_once("mysql_config.php");
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/mysql_config.php');
 
 class MySQLConnector {
 	private $dbConn;

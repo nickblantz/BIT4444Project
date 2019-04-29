@@ -1,5 +1,5 @@
 <?php
-require_once("api_config.php");
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/yelp_config.php');
 
 class YelpConnector {
 	private $curl;
@@ -54,9 +54,10 @@ class YelpConnector {
 		try {
 			curl_setopt($this->curl, CURLOPT_URL, API_BASE . $endpoint . http_build_query($params));
 			$result = curl_exec($this->curl);
+			$http_status = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
 			
 			if ($result === false) throw new Exception(curl_error($this->curl), curl_errno($this->curl));
-			if (curl_getinfo($this->curl, CURLINFO_HTTP_CODE) != 200) throw new Exception($result, $http_status);
+			if ($http_status != 200) throw new Exception($result, $http_status);
 		} catch(Exception $e) {
 			trigger_error(sprintf(
 				'Curl failed with error #%d: %s',

@@ -30,6 +30,10 @@
 	margin-bottom: auto;
 }
 
+#logo-container {
+	padding-left: 2px;
+}
+
 .side-panel {
 	background-color: white;
 	overflow: auto;

@@ -1,6 +1,6 @@
 <?php
 class User {
-	public $user_id,
+	public  $user_id,
 			$username,
 			$is_owner,
 			$first_name,
@@ -30,5 +30,9 @@ class User {
 		$this->state = $state;
 		$this->zipcode = $zipcode;
 	}
+	
+	public function __toString() {
+        return "(" . $this->user_id . ", " . $this->username . ", " . $this->is_owner . ", " . $this->first_name . ", " . $this->last_name . ", " . $this->phone_number . ", " . $this->email . ", " . $this->address_1 . ", " . $this->address_2 . ", " . $this->city . ", " . $this->state . ", " . $this->zipcode . ")";
+    }
 }
 ?>
