@@ -49,7 +49,7 @@ if (isset($_POST['search_submit']) && $_POST['search_submit'] != "") {
 	}
 	
 	if (!$error) {
-		require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '\BIT4444Project\lib\yelp_connector.php');
+		require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/yelp_connector.php');
 		
 		$connector = new YelpConnector();
 		$radius_miles = 0.05;
