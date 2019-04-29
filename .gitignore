@@ -1,2 +1,2 @@
-resources/lib/api_config.php
+resources/lib/yelp_config.php
 resources/lib/mysql_config.php
