@@ -18,7 +18,7 @@ function generate_header($page_name) {
 		echo "<a class='dropdown-item' href='" . redirect_prefix('index') . "'>Home</a>";
 		echo "<a class='dropdown-item' href='" . redirect_prefix('ContactUs') . "'>Contact Us</a>";
 	}
-	
+	echo "<header id='header-container' class='container-fluid'>";
 	echo "<div class='row h-100'>";
 	echo "<div class='col-md-2 col-sm-2 d-none d-sm-block justify-left pl-2'><img src='" . redirect_prefix('Resources/images/logo.png') . "' /></div>";
 	echo "<div class='col-md-8 col-sm-8 col-9 center-content'><h2>" . $page_name . "</h2></div>";
@@ -30,6 +30,6 @@ function generate_header($page_name) {
 	echo "</a>";
 	echo "<div class='dropdown-menu dropdown-menu-right'>";
 	generate_nav();
-	echo "</div></li></ul></div></div>";
+	echo "</div></li></ul></div></div></header>";
 }
 ?>

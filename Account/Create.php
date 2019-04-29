@@ -94,35 +94,27 @@ if (isset($_POST['create_submit']) && $_POST['create_submit'] != "") {
 ?>
 <!doctype html>
 <html lang="en">
- <head><?php generate_head('Create Account'); ?></head>
+ <?php generate_head('Create Account'); ?>
  <body>
-  <main id="main-container" class="container-fluid">
-   <div id="main-container-row" class="row h-100">
-    <div class="col-md-2 col-sm-1 d-none d-sm-block side-panel"></div>
-	<div id="content" class="col-md-8 col-sm-10 col-12">
-	 <br />
-     <form method="POST">
-	  <input type="text" name="username" placeholder="Username" /><br />
-	  <input type="password" name="password" placeholder="Password" /><br />
-	  <input type="password" name="password_re" placeholder="Re-enter Password" /><br />
-	  <input type="text" name="is_owner" placeholder="is_owner" /><br />
-	  <input type="text" name="first_name" placeholder="First Name" /><br />
-	  <input type="text" name="last_name" placeholder="Last Name" /><br />
-	  <input type="text" name="phone_number" placeholder="Phone Number" /><br />
-	  <input type="text" name="email" placeholder="Email" /><br />
-	  <input type="text" name="address_1" placeholder="Address 1" /><br />
-	  <input type="text" name="address_2" placeholder="Address 2" /><br />
-	  <input type="text" name="city" placeholder="City" /><br />
-	  <input type="text" name="state" placeholder="State" /><br />
-	  <input type="text" name="zipcode" placeholder="Zipcode" /><br />
-	  <input type="submit" name="create_submit" />
-	 </form>
-	 <br /><br />
-	</div>
-	<div class="col-md-2 col-sm-1 d-none d-sm-block side-panel"></div>
-   </div>
-  </main>
-  <header id="header-container" class="container-fluid"> <?php generate_header('Create Account'); ?></header>
-  <footer id="footer-container" class="container-fluid"> <?php generate_footer(); ?></footer>
+  <?php generate_main_beginning(); ?>
+   <form method="POST">
+    <input type="text" name="username" placeholder="Username" /><br />
+    <input type="password" name="password" placeholder="Password" /><br />
+    <input type="password" name="password_re" placeholder="Re-enter Password" /><br />
+    <input type="text" name="is_owner" placeholder="is_owner" /><br />
+    <input type="text" name="first_name" placeholder="First Name" /><br />
+    <input type="text" name="last_name" placeholder="Last Name" /><br />
+    <input type="text" name="phone_number" placeholder="Phone Number" /><br />
+    <input type="text" name="email" placeholder="Email" /><br />
+    <input type="text" name="address_1" placeholder="Address 1" /><br />
+    <input type="text" name="address_2" placeholder="Address 2" /><br />
+    <input type="text" name="city" placeholder="City" /><br />
+    <input type="text" name="state" placeholder="State" /><br />
+    <input type="text" name="zipcode" placeholder="Zipcode" /><br />
+    <input type="submit" name="create_submit" />
+   </form>
+  <?php generate_main_end(); ?>
+  <?php generate_header('Create Account'); ?>
+  <?php generate_footer(); ?>
  </body>
 </html>

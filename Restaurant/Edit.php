@@ -4,71 +4,63 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/li
 ?>
 <!doctype html>
 <html lang="en">
- <head><?php generate_head('Restaurant Edit'); ?></head>
+ <?php generate_head('Restaurant Edit'); ?>
  <body>
-  <main id="main-container" class="container-fluid">
-   <div id="main-container-row" class="row h-100">
-    <div class="col-md-2 col-sm-1 d-none d-sm-block side-panel"></div>
-	<div id="content" class="col-md-8 col-sm-10 col-12">
-	 <br />
-	 <div class="row justify-content-center no-gutters mx-auto">
-	  <div class="col-12 col-sm-8 col-md-6 col-lg-5 border">
-	   <div class="m-2 justify-center">
-	    <h5 class="d-inline">Current Thumbnail:&nbsp;</h5>
-	    <img src="https://s3-media2.fl.yelpcdn.com/bphoto/CPc91bGzKBe95aM5edjhhQ/o.jpg" class="rounded-circle search-result-thumbnail">
-	   </div>
-	   <hr />
-	   <form>
-		<h5 class="ml-3">New Thumbnail</h5>
-		<div class="input-group mb-3">
-         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile02">
-          <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
-         </div>
-         <div class="input-group-append">
-		  <button class="btn btn-primary" type="submit">Update</button>
-         </div>
-        </div>
-	   </form>
-	  </div>
-	 </div>
-	 <br />
-	 <div class="row justify-content-center no-gutters border">
-	  <div class="col-12 col-md-6 my-2">
-	   <h5>Current Blurb</h5>
-	   <div class="">
-	    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquet euismod urna, varius accumsan libero pulvinar ut. Sed nec est at ipsum pharetra tincidunt. Nunc venenatis cursus massa quis malesuada. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce vel lectus id urna faucibus congue. Phasellus nec nunc congue, gravida dolor et, rutrum mi. Donec accumsan quis felis et eleifend.</p>
-	   </div>
-	  </div>
-	  <div class="col-12 col-md-6 border-left my-2">
-	   <form>
-	    <div class="form-group">
-         <h5 for="exampleFormControlTextarea1">New Blurb</h5>
-         <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
-        </div>
-		<div class="justify-right">
-		 <button class="btn btn-primary" type="submit">Update</button>
-	     <button class="btn btn-secondary" type="reset">Clear</button>
-		</div>
-	   </form>
-	  </div>
-	 </div>
-	 <br />
-	 <div class="justify-center">
-	  <form method="POST" action="View">
-	   <button class="btn btn-lg btn-primary" type="submit" name="view_submit">View Public Page</button>
-	  </form>
-	  <br />
-	  <form method="POST" action="Stats">
-	   <button class="btn btn-lg btn-primary" type="submit" name="stats_submit">View Statistics</button>
-	  </form>
-	 </div>
-	 <br /><br />
-	</div>
-    <div class="col-md-2 col-sm-1 d-none d-sm-block side-panel"></div>
+  <?php generate_main_beginning(); ?>
+   <div class="row justify-content-center no-gutters mx-auto">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-5 border">
+     <div class="m-2 justify-center">
+      <h5 class="d-inline">Current Thumbnail:&nbsp;</h5>
+      <img src="https://s3-media2.fl.yelpcdn.com/bphoto/CPc91bGzKBe95aM5edjhhQ/o.jpg" class="rounded-circle search-result-thumbnail">
+     </div>
+     <hr />
+     <form>
+      <h5 class="ml-3">New Thumbnail</h5>
+      <div class="input-group mb-3">
+       <div class="custom-file">
+        <input type="file" class="custom-file-input" id="inputGroupFile02">
+        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+       </div>
+       <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Update</button>
+       </div>
+      </div>
+     </form>
+    </div>
    </div>
-  </main>
-  <header id="header-container" class="container-fluid"> <?php generate_header('Restaurant Edit'); ?></header>
-  <footer id="footer-container" class="container-fluid"> <?php generate_footer(); ?></footer>
+   <br />
+   <div class="row justify-content-center no-gutters border">
+    <div class="col-12 col-md-6 my-2">
+     <h5>Current Blurb</h5>
+     <div class="">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquet euismod urna, varius accumsan libero pulvinar ut. Sed nec est at ipsum pharetra tincidunt. Nunc venenatis cursus massa quis malesuada. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce vel lectus id urna faucibus congue. Phasellus nec nunc congue, gravida dolor et, rutrum mi. Donec accumsan quis felis et eleifend.</p>
+     </div>
+    </div>
+    <div class="col-12 col-md-6 border-left my-2">
+     <form>
+      <div class="form-group">
+       <h5 for="exampleFormControlTextarea1">New Blurb</h5>
+       <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+      </div>
+      <div class="justify-right">
+       <button class="btn btn-primary" type="submit">Update</button>
+       <button class="btn btn-secondary" type="reset">Clear</button>
+      </div>
+     </form>
+    </div>
+   </div>
+   <br />
+   <div class="justify-center">
+    <form method="POST" action="View">
+     <button class="btn btn-lg btn-primary" type="submit" name="view_submit">View Public Page</button>
+    </form>
+    <br />
+    <form method="POST" action="Stats">
+     <button class="btn btn-lg btn-primary" type="submit" name="stats_submit">View Statistics</button>
+    </form>
+   </div>
+  <?php generate_main_end(); ?>
+  <?php generate_header('Restaurant Edit'); ?>
+  <?php generate_footer(); ?>
  </body>
 </html>

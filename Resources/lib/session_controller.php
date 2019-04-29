@@ -1,6 +1,7 @@
 <?php
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/Template/head.php');
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/Template/header.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/Template/main.php');
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/Template/footer.php');
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/mysql_connector.php');
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/structs/user.php');
