@@ -1,5 +1,6 @@
 <?php
 $restricted_level = -1;
+$page_name = 'Create Account';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
 
 if (isset($_POST['create_submit']) && $_POST['create_submit'] != "") {
@@ -91,30 +92,25 @@ if (isset($_POST['create_submit']) && $_POST['create_submit'] != "") {
 		create_account($username, $password, $is_owner, $first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode);
 	}
 }
+
+generate_html_beginning($page_name);
 ?>
-<!doctype html>
-<html lang="en">
- <?php generate_head('Create Account'); ?>
- <body>
-  <?php generate_main_beginning(); ?>
-   <form method="POST">
-    <input type="text" name="username" placeholder="Username" /><br />
-    <input type="password" name="password" placeholder="Password" /><br />
-    <input type="password" name="password_re" placeholder="Re-enter Password" /><br />
-    <input type="text" name="is_owner" placeholder="is_owner" /><br />
-    <input type="text" name="first_name" placeholder="First Name" /><br />
-    <input type="text" name="last_name" placeholder="Last Name" /><br />
-    <input type="text" name="phone_number" placeholder="Phone Number" /><br />
-    <input type="text" name="email" placeholder="Email" /><br />
-    <input type="text" name="address_1" placeholder="Address 1" /><br />
-    <input type="text" name="address_2" placeholder="Address 2" /><br />
-    <input type="text" name="city" placeholder="City" /><br />
-    <input type="text" name="state" placeholder="State" /><br />
-    <input type="text" name="zipcode" placeholder="Zipcode" /><br />
-    <input type="submit" name="create_submit" />
-   </form>
-  <?php generate_main_end(); ?>
-  <?php generate_header('Create Account'); ?>
-  <?php generate_footer(); ?>
- </body>
-</html>
+ <form method="POST">
+  <input type="text" name="username" placeholder="Username" /><br />
+  <input type="password" name="password" placeholder="Password" /><br />
+  <input type="password" name="password_re" placeholder="Re-enter Password" /><br />
+  <input type="text" name="is_owner" placeholder="is_owner" /><br />
+  <input type="text" name="first_name" placeholder="First Name" /><br />
+  <input type="text" name="last_name" placeholder="Last Name" /><br />
+  <input type="text" name="phone_number" placeholder="Phone Number" /><br />
+  <input type="text" name="email" placeholder="Email" /><br />
+  <input type="text" name="address_1" placeholder="Address 1" /><br />
+  <input type="text" name="address_2" placeholder="Address 2" /><br />
+  <input type="text" name="city" placeholder="City" /><br />
+  <input type="text" name="state" placeholder="State" /><br />
+  <input type="text" name="zipcode" placeholder="Zipcode" /><br />
+  <input type="submit" name="create_submit" />
+ </form>
+<?php
+generate_html_ending($page_name);
+?>

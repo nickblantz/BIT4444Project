@@ -1,3 +1,4 @@
+/* CREATE DATABASE IF NOT EXISTS `test_db` CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci' */
 DROP TABLE IF EXISTS `review`, `restaurant_stats`, `restaurant`, `user`;
 
 CREATE TABLE `user` (

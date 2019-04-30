@@ -1,5 +1,6 @@
 <?php
 $restricted_level = -1;
+$page_name = 'Login';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
 
 if (isset($_POST['login_submit']) && $_POST['login_submit'] != "") {
@@ -26,19 +27,14 @@ if (isset($_POST['login_submit']) && $_POST['login_submit'] != "") {
 		}
 	}
 }
+
+generate_html_beginning($page_name);
 ?>
-<!doctype html>
-<html lang="en">
- <?php generate_head('Login'); ?>
- <body>
-  <?php generate_main_beginning(); ?>
-   <form method="POST">
-    <input type="text "name="username" placeholder="Username" />
-    <input type="password" name="password" placeholder="Password" />
-    <input type="submit" name="login_submit" />
-   </form>
-  <?php generate_main_end(); ?>
-  <?php generate_header('Login'); ?>
-  <?php generate_footer(); ?>
- </body>
-</html>
+ <form method="POST">
+  <input type="text "name="username" placeholder="Username" />
+  <input type="password" name="password" placeholder="Password" />
+  <input type="submit" name="login_submit" />
+ </form>
+<?php
+generate_html_ending($page_name);
+?>
