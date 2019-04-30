@@ -1,10 +1,13 @@
 <?php
 $restricted_level = 3;
+$page_name = 'Restaurant Edit';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
 ?>
 <!doctype html>
 <html lang="en">
- <?php generate_head('Restaurant Edit'); ?>
+ <head>
+  <?php generate_head($page_name); ?>
+ </head>
  <body>
   <?php generate_main_beginning(); ?>
    <div class="row justify-content-center no-gutters mx-auto">
@@ -60,7 +63,7 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/li
     </form>
    </div>
   <?php generate_main_end(); ?>
-  <?php generate_header('Restaurant Edit'); ?>
+  <?php generate_header($page_name); ?>
   <?php generate_footer(); ?>
  </body>
 </html>

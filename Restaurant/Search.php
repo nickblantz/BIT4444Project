@@ -1,5 +1,6 @@
 <?php
 $restricted_level = 2;
+$page_name = 'Search';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
 
 if(isset($_POST['rest_id']) && $_POST['rest_id'] != "") {
@@ -60,7 +61,9 @@ if (isset($_POST['search_submit']) && $_POST['search_submit'] != "") {
 ?>
 <!doctype html>
 <html lang="en">
- <?php generate_head('Restaurant Search'); ?>
+ <head>
+  <?php generate_head($page_name); ?>
+ </head>
  <body>
   <?php generate_main_beginning(); ?>
    <form method="POST">
@@ -94,7 +97,7 @@ if (isset($_POST['search_submit']) && $_POST['search_submit'] != "") {
 	</div>
    </form>
   <?php generate_main_end(); ?>
-  <?php generate_header('Restaurant Search'); ?>
+  <?php generate_header($page_name); ?>
   <?php generate_footer(); ?>
  </body>
 </html>

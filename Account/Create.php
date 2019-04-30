@@ -1,5 +1,6 @@
 <?php
 $restricted_level = -1;
+$page_name = 'Create Account';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
 
 if (isset($_POST['create_submit']) && $_POST['create_submit'] != "") {
@@ -94,7 +95,9 @@ if (isset($_POST['create_submit']) && $_POST['create_submit'] != "") {
 ?>
 <!doctype html>
 <html lang="en">
- <?php generate_head('Create Account'); ?>
+ <head>
+  <?php generate_head($page_name); ?>
+ </head>
  <body>
   <?php generate_main_beginning(); ?>
    <form method="POST">
@@ -114,7 +117,7 @@ if (isset($_POST['create_submit']) && $_POST['create_submit'] != "") {
     <input type="submit" name="create_submit" />
    </form>
   <?php generate_main_end(); ?>
-  <?php generate_header('Create Account'); ?>
+  <?php generate_header($page_name); ?>
   <?php generate_footer(); ?>
  </body>
 </html>

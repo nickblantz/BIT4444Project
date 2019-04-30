@@ -1,10 +1,13 @@
 <?php
 $restricted_level = 0;
+$page_name = 'Home Page';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
 ?>
 <!doctype html>
 <html lang="en">
- <?php generate_head('Home Page'); ?>
+ <head>
+  <?php generate_head($page_name); ?>
+ </head>
  <body>
   <?php generate_main_beginning(); ?>
    <br /><br /><br /><br />
@@ -32,7 +35,7 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/li
    <br /><br /><br /><br />
    <br /><br /><br /><br />
   <?php generate_main_end(); ?>
-  <?php generate_header('Home Page'); ?>
+  <?php generate_header($page_name); ?>
   <?php generate_footer(); ?>
  </body>
 </html>

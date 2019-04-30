@@ -1,10 +1,13 @@
 <?php
 $restricted_level = 3;
+$page_name = 'Restaurant Stats';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
 ?>
 <!doctype html>
 <html lang="en">
- <?php generate_head('Restaurant Stats'); ?>
+ <head>
+  <?php generate_head($page_name); ?>
+ </head>
  <body>
   <?php generate_main_beginning(); ?>
    <div class="row justify-content-center">
@@ -18,7 +21,7 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/li
     </figure>
    </div>
   <?php generate_main_end(); ?>
-  <?php generate_header('Restaurant Stats'); ?>
+  <?php generate_header($page_name); ?>
   <?php generate_footer(); ?>
  </body>
 </html>

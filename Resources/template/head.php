@@ -1,6 +1,6 @@
 <?php
 function generate_head($page_name) {
-	echo "<head><meta charset='utf-8'>";
+	echo "<meta charset='utf-8'>";
 	echo "<meta http-equiv='X-UA-Compatible' content='IE=edge'>";
 	echo "<meta name='viewport' content='width=device-width, initial-scale=1'>";
 	echo "<title>" . $page_name . "</title>";
@@ -10,6 +10,6 @@ function generate_head($page_name) {
 	echo "<link rel='stylesheet' type='text/css' href='" . redirect_prefix('Resources/css/sitestyles.css') . "' />";
 	echo "<script src='" . redirect_prefix('Resources/js/jquery.js') . "'></script>";
 	echo "<script src='" . redirect_prefix('Resources/js/popper.js') . "'></script>";
-	echo "<script src='" . redirect_prefix('Resources/js/bootstrap.min.js') . "'></script></head>";
+	echo "<script src='" . redirect_prefix('Resources/js/bootstrap.min.js') . "'></script>";
 }
 ?>
