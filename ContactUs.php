@@ -1,7 +1,23 @@
 <?php
 $restricted_level = 0;
 $page_name = 'Contact Us';
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
+require_once('Resources/lib/session_controller.php');
+
+if (isset($_POST['comment_submit']) && $_POST['comment_submit'] != "") {
+	$comment = null;
+	$error = false;
+	
+	if (isset($_POST['comment']) && $_POST['comment'] != "") {
+		$comment =  $_POST['comment'];
+	} else {
+		$error = true;
+	}
+	
+	if (!$error) {
+		Comment::create_comment($comment);
+		header('location: ' . redirect_prefix(''));
+	}
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -12,10 +28,10 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/li
   <?php generate_main_beginning(); ?>
    <div class="row">
     <div class="col justify-center">
-     <form>
+     <form method="POST">
 	  <div>
        <h4>Please insert your comments:</h4>
-       <textarea class="form-control" name="comments" rows="5" cols="70"></textarea>
+       <textarea class="form-control" name="comment" rows="5" cols="70"></textarea>
 	  </div>
 	  <br />
 	  <div class="border">
@@ -25,7 +41,7 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/li
 	  </div>
 	  <br />
       <div>
-       <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+       <input class="btn btn-primary" type="submit" name="comment_submit" value="Submit">
        <input class="btn btn-secondary" type="reset" name="reset" value="Reset">
       </div>
 	 </div>

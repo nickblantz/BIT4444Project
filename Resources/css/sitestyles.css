@@ -82,3 +82,16 @@
 	font-size: 10px !important;
 	color: red !important;
 }
+
+#restaurant-view-photo {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	min-height: 250px;
+}
+
+#review-container {
+	height: 400px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}

@@ -1,5 +1,5 @@
 <?php
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/yelp_config.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/IndecisiveEats/Resources/lib/yelp_config.php');
 
 class YelpConnector {
 	private $curl;

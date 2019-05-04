@@ -1,7 +1,7 @@
 <?php
 $restricted_level = -1;
 $page_name = 'Create Account';
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
+require_once('../Resources/lib/session_controller.php');
 
 $username = null;
 $password = null;
@@ -92,7 +92,8 @@ if (isset($_POST['create_submit']) && $_POST['create_submit'] != "") {
 		$password_match_error = !($password === $password_re);
 		$username_error = is_username_taken($username);
 		if (!$password_character_error && !$password_match_error && !$username_error) {
-			create_account($username, $password, $is_owner, $first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode);
+			User::create_account($username, $password, $is_owner, $first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode);
+			header('location: ' . redirect_prefix('Account/Login'));
 		}
 	}
 }

@@ -1,11 +1,13 @@
 <?php
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/Template/head.php');
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/Template/header.php');
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/Template/main.php');
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/Template/footer.php');
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/mysql_connector.php');
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/structs/user.php');
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/structs/restaurant.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/IndecisiveEats/Resources/Template/head.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/IndecisiveEats/Resources/Template/header.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/IndecisiveEats/Resources/Template/main.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/IndecisiveEats/Resources/Template/footer.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/IndecisiveEats/Resources/lib/mysql_connector.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/IndecisiveEats/Resources/lib/structs/user.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/IndecisiveEats/Resources/lib/structs/restaurant.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/IndecisiveEats/Resources/lib/structs/review.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/IndecisiveEats/Resources/lib/structs/comment.php');
 session_start();
 
 function redirect_prefix($str) {
@@ -17,30 +19,6 @@ function redirect_prefix($str) {
 	return $output . $str;
 }
 
-function create_account($username, $password, $is_owner, $first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode) {
-	$pw_hash = password_hash($password, PASSWORD_BCRYPT);
-	$connector = new MySQLConnector();
-	$connector -> query("INSERT INTO `user` (`username`, `password`, `is_owner`, `first_name`, `last_name`, `phone_number`, `email`, `address_1`, `address_2`, `city`, `state`, `zipcode`) VALUES ('" . $username . "', '" . $pw_hash . "', " . $is_owner . ", '" . $first_name . "', '" . $last_name . "', '" . $phone_number . "', '" . $email . "', '" . $address_1 . "', '" . $address_2 . "', '" . $city . "', '" . $state . "', '" . $zipcode . "')");
-	header('location: ' . redirect_prefix('Account/Login'));
-}
-
-function update_account($first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode) {
-	$connector = new MySQLConnector();
-	$connector -> query("UPDATE `user` SET `first_name` = '" . $first_name . "', `last_name` = '" . $last_name . "', `phone_number` = '" . $phone_number . "', `email` = '" . $email . "', `address_1` = '" . $address_1 . "', `address_2` = '" . $address_2 . "', `city` = '" . $city . "', `state` = '" . $state . "', `zipcode` = '" . $zipcode . "' WHERE `user_id` = '" . $_SESSION['active_user']->user_id . "'");
-	$_SESSION['active_user']->update($first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode);
-}
-
-/* REGular EXpression (regex) for validating the strength of enteredPassword
-        
-	^                   start of regex
-	(?=.{8,32})         minimum 8 and maximum 32 characters long  
-	(?=.*[!@#$%^&*()])  contain at least one of the special characters
-						above the numbers 1, 2, 3, ..., 9, 0 on the keyboard.
-	(?=.*[A-Z])         contain at least one uppercase letter
-	(?=.*[a-z])         contain at least one lowercase letter
-	(?=.*[0-9])         contain at least one digit from 0 to 9.
-	$                   end of regex
- */
 function is_password_valid($password) {
 	$regex = '/^(?=.{8,32})(?=.*[!@#$%^&*()])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$/';
 	return preg_match($regex, $password) && substr_count($password, ' ') == 0;

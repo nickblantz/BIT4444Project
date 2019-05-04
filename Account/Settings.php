@@ -1,10 +1,37 @@
 <?php
 $restricted_level = 1;
 $page_name = 'Account Settings';
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
+require_once('../Resources/lib/session_controller.php');
 
 if (isset($_POST['login_submit']) && $_POST['login_submit'] != "") {
+	$password = null;
+	$password_re = null;
+	$error = false;
+	$password_character_error = false;
+	$password_match_error = false;
 	
+	if (isset($_POST['password']) && $_POST['password'] != "") {
+		$password =  $_POST['password'];
+	} else {
+		$error = true;
+	}
+	if (isset($_POST['password_re']) && $_POST['password_re'] != "") {
+		$password_re =  $_POST['password_re'];
+	} else {
+		$error = true;
+	}
+	
+	if (!$error) {
+		$password_character_error = !is_password_valid($password);
+		$password_match_error = !($password === $password_re);
+		if (!$password_character_error && !$password_match_error) {
+			User::update_password($password);
+		}
+	}
+}
+
+if (isset($_POST['delete_account']) && $_POST['delete_account'] === "delete") {
+	header('location: ' . redirect_prefix('Account\DeleteConfirmation'));
 }
 
 if (isset($_POST['account_submit']) && $_POST['account_submit'] != "") {
@@ -66,7 +93,8 @@ if (isset($_POST['account_submit']) && $_POST['account_submit'] != "") {
 	}
 	
 	if (!$error) {
-		update_account($first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode);
+		User::update_account($first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode);
+		$_POST = array();
 	}
 } else {
 	$first_name = $_SESSION['active_user']->first_name;
@@ -91,8 +119,18 @@ if (isset($_POST['account_submit']) && $_POST['account_submit'] != "") {
 	<div class="col-8 col-md-6 col-lg-4 mx-auto">
 	 <h4>Login Information</h4>
 	 <label>Password:</label><input type="password" name="password" class="form-control" />
+	 <?php
+	 if (isset($password_character_error) && $password_character_error) {
+		 echo "<span class='form-error'>Password does not match requirements</span>";
+	 }
+	 ?>
 	 <small class="form-text text-muted">Your password must be 8-32 characters long, have at least one lower-case letter, have at least upper-case letter, have at least one number, have at least one special character, and must not contain spaces.</small>
      <label>Re-enter Password:</label><input type="password" name="password_re" class="form-control" />
+	 <?php
+	 if (isset($password_match_error) && $password_match_error) {
+		 echo "<span class='form-error'>Passwords do not match</span>";
+	 }
+	 ?>
 	 <br />
 	 <div class="row">
 	  <div class="col-6">
@@ -127,7 +165,7 @@ if (isset($_POST['account_submit']) && $_POST['account_submit'] != "") {
 	  </div>
 	  <br /><br /><br />
 	  <div class="col-6 justify-center">
-	   <button type="button" class="btn btn-danger">Delete Account</button>
+	   <button class="btn btn-danger" name="delete_account" value="delete">Delete Account</button>
 	  </div>
 	 </div>
 	</div>

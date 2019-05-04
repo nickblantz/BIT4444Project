@@ -1,7 +1,7 @@
 <?php
 $restricted_level = 0;
 $page_name = 'About Us';
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
+require_once('Resources/lib/session_controller.php');
 ?>
 <!doctype html>
 <html lang="en">

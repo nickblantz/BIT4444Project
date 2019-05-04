@@ -1,14 +1,16 @@
 <?php
 $restricted_level = 2;
-$page_name = 'Search';
-require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/session_controller.php');
+$page_name = 'Restaurant Search';
+require_once('../Resources/lib/session_controller.php');
+require_once('../Resources/lib/yelp_connector.php');
 
 if(isset($_POST['rest_id']) && $_POST['rest_id'] != "") {
 	$connector = new MySQLConnector();
 	if (mysqli_fetch_array($connector->query("SELECT COUNT(1) FROM `restaurant` WHERE `restaurant_id` = '" . $_POST['rest_id'] . "'"))['COUNT(1)'] < 1) {
-		$connector->query("INSERT INTO `restaurant` (`restaurant_id`, `owner_id`, `blurb`) VALUES ('" . $_POST['rest_id'] . "', '" . $_SESSION['active_user']->user_id . "', '')");
-		$_SESSION['active_restaurant'] = new Restaurant($_POST['rest_id'], $_SESSION['active_user']->user_id, '');
-		$_POST = array();
+		$yelp_connector = new YelpConnector();
+		$result = $yelp_connector -> restaurant_details($_POST['rest_id']);
+		
+		Restaurant::create_restaurant($result['id'], $_SESSION['active_user']->user_id, $result['name'], 0, $result['image_url'], $result['display_phone'], $result['price'], $result['location']['address1'], $result['location']['address2'], $result['location']['city'] , $result['location']['state'], $result['location']['zip_code']);
 		header('location: ' . redirect_prefix('Restaurant\Edit'));
 	} else {
 		$claim_error = true;
@@ -50,8 +52,6 @@ if (isset($_POST['search_submit']) && $_POST['search_submit'] != "") {
 	}
 	
 	if (!$error) {
-		require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/lib/yelp_connector.php');
-		
 		$connector = new YelpConnector();
 		$radius_miles = 0.05;
 		$address = $address_1 . ', ' . $city . ', ' . $state . ' ' . $zipcode;
@@ -93,7 +93,36 @@ if (isset($_POST['search_submit']) && $_POST['search_submit'] != "") {
    <br /><br />
    <form method="POST">
 	<div id="search-results">
-	 <?php require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/components/search_results.php'); ?>
+	 <?php 
+		if (isset($error) && !$error) {
+			foreach($result['businesses'] as $restaurant) {
+				if ($address_1 == $restaurant['location']['address1']) {
+					echo "<div class='row border mx-auto'>";
+					echo "<div class='col-sm-3 d-none d-sm-block justify-center'>";
+					echo "<img src='" . $restaurant['image_url'] . "' class='rounded-circle search-result-thumbnail'>";
+					echo "</div>";
+					echo "<div class='col-8 col-sm-6'>";
+					echo "<h2>" . $restaurant['name'] . "</h2>";
+					if ($restaurant['location']['address2'] != "") {
+						echo "<p>" . $restaurant['location']['address1'] . "<br />" . $restaurant['location']['address2'] . "<br />" . $restaurant['location']['city'] . ", " . $restaurant['location']['state'] . " " . $restaurant['location']['zip_code'] . "</p>";
+					} else {
+						echo "<p>" . $restaurant['location']['address1'] . "<br />" . $restaurant['location']['city'] . ", " . $restaurant['location']['state'] . " " . $restaurant['location']['zip_code'] . "</p>";
+					}
+					echo "</div>";
+					echo "<div class='col-4 col-sm-3 justify-center'>";
+					echo "<button name='rest_id' value='" . $restaurant['id'] . "' class='btn btn-outline-secondary border search-result-claim'>";
+					echo "<img src='../Resources/images/checkmark-26.png' />";
+					echo "<span>Claim</span>";
+					echo "</button>";
+					echo "</div>";
+					echo "</div>";
+					echo "<br />";
+				}
+			}
+		} elseif (isset($claim_error) && $claim_error) {
+			echo "<h3>Selected restaurant has already been claimed</h3>";
+		}
+     ?>
 	</div>
    </form>
   <?php generate_main_end(); ?>
