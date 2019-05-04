@@ -22,7 +22,7 @@ function generate_header($page_name) {
 	}
 	echo "<header id='header-container' class='container-fluid'>";
 	echo "<div class='row h-100'>";
-	echo "<div class='col-md-2 col-sm-2 d-none d-sm-block justify-left pl-0'><img height='56' src='" . redirect_prefix('Resources/images/logo.png') . "' /></div>";
+	echo "<div class='col-md-2 col-sm-2 d-none d-sm-block justify-left pl-0'><a href='" . redirect_prefix('') . "'><img height='56' src='" . redirect_prefix('Resources/images/logo.png') . "' /></a></div>";
 	echo "<div class='col-md-8 col-sm-8 col-9 center-content'><h2>" . $page_name . "</h2></div>";
 	echo "<div class='col-md-2 col-sm-2 col-3 pr-2'>";
 	echo "<ul class='nav navbar-light nav-pills justify-right'>";
