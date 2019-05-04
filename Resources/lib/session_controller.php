@@ -18,12 +18,38 @@ function redirect_prefix($str) {
 }
 
 function create_account($username, $password, $is_owner, $first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode) {
-	// Hashing password for security
 	$pw_hash = password_hash($password, PASSWORD_BCRYPT);
-	
 	$connector = new MySQLConnector();
 	$connector -> query("INSERT INTO `user` (`username`, `password`, `is_owner`, `first_name`, `last_name`, `phone_number`, `email`, `address_1`, `address_2`, `city`, `state`, `zipcode`) VALUES ('" . $username . "', '" . $pw_hash . "', " . $is_owner . ", '" . $first_name . "', '" . $last_name . "', '" . $phone_number . "', '" . $email . "', '" . $address_1 . "', '" . $address_2 . "', '" . $city . "', '" . $state . "', '" . $zipcode . "')");
 	header('location: ' . redirect_prefix('Account/Login'));
+}
+
+function update_account($first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode) {
+	$connector = new MySQLConnector();
+	$connector -> query("UPDATE `user` SET `first_name` = '" . $first_name . "', `last_name` = '" . $last_name . "', `phone_number` = '" . $phone_number . "', `email` = '" . $email . "', `address_1` = '" . $address_1 . "', `address_2` = '" . $address_2 . "', `city` = '" . $city . "', `state` = '" . $state . "', `zipcode` = '" . $zipcode . "' WHERE `user_id` = '" . $_SESSION['active_user']->user_id . "'");
+	$_SESSION['active_user']->update($first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode);
+}
+
+/* REGular EXpression (regex) for validating the strength of enteredPassword
+        
+	^                   start of regex
+	(?=.{8,32})         minimum 8 and maximum 32 characters long  
+	(?=.*[!@#$%^&*()])  contain at least one of the special characters
+						above the numbers 1, 2, 3, ..., 9, 0 on the keyboard.
+	(?=.*[A-Z])         contain at least one uppercase letter
+	(?=.*[a-z])         contain at least one lowercase letter
+	(?=.*[0-9])         contain at least one digit from 0 to 9.
+	$                   end of regex
+ */
+function is_password_valid($password) {
+	$regex = '/^(?=.{8,32})(?=.*[!@#$%^&*()])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$/';
+	return preg_match($regex, $password) && substr_count($password, ' ') == 0;
+}
+
+function is_username_taken($username) {
+	$connector = new MySQLConnector();
+	$result = mysqli_fetch_array($connector -> query("SELECT 1 FROM `user` WHERE `username` = '" . $username . "'"));
+	return $result[0] == 1;
 }
 
 function login($username, $password) {

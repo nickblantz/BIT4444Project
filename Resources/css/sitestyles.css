@@ -30,10 +30,6 @@
 	margin-bottom: auto;
 }
 
-#logo-container {
-	padding-left: 2px;
-}
-
 .side-panel {
 	background-color: white;
 	overflow: auto;
@@ -74,4 +70,15 @@
 
 .search-result-claim {
 	font-weight: bold;
+}
+
+.carousel-caption {
+	color: black !important; 
+	background-color: rgba(255,255,255,.75);
+}
+
+.form-error {
+	display: block !important;
+	font-size: 10px !important;
+	color: red !important;
 }

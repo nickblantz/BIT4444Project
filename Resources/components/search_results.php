@@ -16,7 +16,7 @@ if (isset($error) && !$error) {
 			echo "</div>";
 			echo "<div class='col-4 col-sm-3 justify-center'>";
 			echo "<button name='rest_id' value='" . $restaurant['id'] . "' class='btn btn-outline-secondary border search-result-claim'>";
-			echo "<img src='../images/checkmark-26.png' />";
+			echo "<img src='../Resources/images/checkmark-26.png' />";
 			echo "<span>Claim</span>";
 			echo "</button>";
 			echo "</div>";

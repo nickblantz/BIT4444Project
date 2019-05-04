@@ -1,9 +1,9 @@
 <?php
 function generate_header($page_name) {
 	function generate_nav() {
-		if ($_SESSION['active_user'] != null) {
+		if (isset($_SESSION['active_user']) && $_SESSION['active_user'] != null) {
 			echo "<a class='dropdown-item' href='" . redirect_prefix('Account/Logout') . "'>Logout</a>";
-			echo "<a class='dropdown-item' href='" . redirect_prefix('Account/View') . "'>My Account</a>";
+			echo "<a class='dropdown-item' href='" . redirect_prefix('Account/Settings') . "'>My Account</a>";
 			if ($_SESSION['active_user']->is_owner) {
 				echo "<a class='dropdown-item' href='" . redirect_prefix('Restaurant/List') . "'>My Restaurants</a>";
 				echo "<div class='dropdown-divider'></div>";
@@ -13,9 +13,11 @@ function generate_header($page_name) {
 			}
 		} else {
 			echo "<a class='dropdown-item' href='" . redirect_prefix('Account/Login') . "'>Login</a>";
+			echo "<a class='dropdown-item' href='" . redirect_prefix('Account/Create') . "'>Create Account</a>";
 			echo "<div class='dropdown-divider'></div>";
 		}
 		echo "<a class='dropdown-item' href='" . redirect_prefix('index') . "'>Home</a>";
+		echo "<a class='dropdown-item' href='" . redirect_prefix('AboutUs') . "'>About Us</a>";
 		echo "<a class='dropdown-item' href='" . redirect_prefix('ContactUs') . "'>Contact Us</a>";
 	}
 	echo "<header id='header-container' class='container-fluid'>";

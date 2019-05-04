@@ -10,30 +10,16 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/BIT4444Project/Resources/li
  </head>
  <body>
   <?php generate_main_beginning(); ?>
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
-   <br /><br /><br /><br />
+	<?php
+	require_once('Resources/lib/yelp_connector.php');
+	$connector = new YelpConnector();
+	$radius_miles = 10;
+	$address = '23059';
+	$price = array(1, 2);
+
+	$result = $connector -> restaurant_details('WDpeRcUdWEgt1sPHZy-10Q');
+	echo json_encode($result);
+	?>
   <?php generate_main_end(); ?>
   <?php generate_header($page_name); ?>
   <?php generate_footer(); ?>
