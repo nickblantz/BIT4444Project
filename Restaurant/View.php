@@ -69,10 +69,10 @@ if ($_SESSION['active_restaurant']->local_img == 1) {
 				$counter++;
 			}
 			echo "<div class='row border-bottom mx-1 py-1 w-100'>";
-			echo "<div class='col-8 my-auto'>";
+			echo "<div class='col-8 my-2'>";
 			echo "<h5>" . $row['first_name'] . " " . $row['last_name'] . "<br />" . $stars . "</h5>";
 			echo "</div>";
-			echo "<div class='col-4 my-auto'>";
+			echo "<div class='col-4 my-2'>";
 			echo "<p style='margin-bottom: 0px;'>" . date_format(date_create($row['timestamp']), 'd/m/Y') . "</p>";
 			echo "</div>";
 			echo "<div class='col-12'>";

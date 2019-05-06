@@ -1,0 +1,33 @@
+#rotate {
+	margin-top: 150px;
+	margin-bottom: 150px;
+	transform-style: preserve-3d;
+}
+
+#ring {
+	margin: auto;
+	height: 80px;
+	width: 400px;
+	transform-style: preserve-3d;
+}
+
+.slot {
+	position: absolute;
+	width: 400px;
+	height: 80px;
+	box-sizing: border-box;
+	opacity: 0.9;
+	color: rgba(0,0,0,0.9);
+	background: #fff;
+	-webkit-backface-visibility: hidden;
+	 -moz-backface-visibility: hidden;
+		  backface-visibility: hidden;
+}
+
+.slot p {
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 80px;
+	margin: 0;
+	text-align: center;
+}

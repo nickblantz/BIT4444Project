@@ -49,8 +49,7 @@ CREATE TABLE `review` (
  `star_review` INT NOT NULL,
  `text_review` VARCHAR(8192) NOT NULL,
  PRIMARY KEY (`review_id`),
- CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`) ON DELETE CASCADE,
- CONSTRAINT FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant`(`restaurant_id`) ON DELETE CASCADE
+ CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `restaurant_stats` (
