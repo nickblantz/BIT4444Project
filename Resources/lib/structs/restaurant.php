@@ -42,6 +42,12 @@ class Restaurant {
 		$_SESSION['active_restaurant'] = new Restaurant($restaurant_id, $owner_id, $name, $local_img, $image_url, $phone_number, $price, $address_1, $address_2, $city, $state, $zipcode);
 	}
 	
+	public static function delete_restaurant() {
+		$connector = new MySQLConnector();
+		$connector -> query("DELETE FROM `restaurant` WHERE `restaurant_id` = '" . $_SESSION['active_restaurant']->restaurant_id . "'");
+		$_SESSION['active_restaurant'] = null;
+	}
+	
 	public static function update_restaurant($phone_number, $price, $address_1, $address_2, $city, $state, $zipcode) {
 		$connector = new MySQLConnector();
 		$connector->query("UPDATE `restaurant` SET `phone_number` = '" . $phone_number . "', `price` = '" . $price . "', `address_1` = '" . $address_1 . "', `address_2` = '" . $address_2 . "', `city` = '" . $city . "', `state` = '" . $state . "', `zipcode` = '" . $zipcode . "'");

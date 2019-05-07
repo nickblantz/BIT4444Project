@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS `review`, `restaurant_stats`, `restaurant`, `comment`, `user`;
+DROP TABLE IF EXISTS `comment`, `review`, `restaurant_stats`, `restaurant`, `user_stats`, `user`;
 
 CREATE TABLE `user` (
  `user_id` INT NOT NULL AUTO_INCREMENT,
@@ -17,11 +17,13 @@ CREATE TABLE `user` (
  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE `comment` (
- `comment_id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_stats` (
+ `statistic_id` INT NOT NULL AUTO_INCREMENT,
+ `user_id` INT NOT NULL,
  `timestamp` DATETIME NOT NULL,
- `comment` VARCHAR(8192) NOT NULL,
- PRIMARY KEY (`comment_id`)
+ `is_skip` BOOLEAN NOT NULL,
+ PRIMARY KEY (`statistic_id`),
+ CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `restaurant` (
@@ -41,6 +43,15 @@ CREATE TABLE `restaurant` (
  CONSTRAINT FOREIGN KEY (`owner_id`) REFERENCES `user`(`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE `restaurant_stats` (
+ `statistic_id` INT NOT NULL AUTO_INCREMENT,
+ `restaurant_id` VARCHAR(22) NOT NULL,
+ `timestamp` DATETIME NOT NULL,
+ `is_skip` BOOLEAN NOT NULL,
+ PRIMARY KEY (`statistic_id`),
+ CONSTRAINT FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant`(`restaurant_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE `review` (
  `review_id` INT NOT NULL AUTO_INCREMENT,
  `user_id` INT NOT NULL,
@@ -52,10 +63,10 @@ CREATE TABLE `review` (
  CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE `restaurant_stats` (
- `statistic_id` INT NOT NULL AUTO_INCREMENT,
- `restaurant_id` VARCHAR(22) NOT NULL,
- `is_skip` BOOLEAN NOT NULL,
- PRIMARY KEY (`statistic_id`),
- CONSTRAINT FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant`(`restaurant_id`) ON DELETE CASCADE
+CREATE TABLE `comment` (
+ `comment_id` INT NOT NULL AUTO_INCREMENT,
+ `timestamp` DATETIME NOT NULL,
+ `comment` VARCHAR(8192) NOT NULL,
+ PRIMARY KEY (`comment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

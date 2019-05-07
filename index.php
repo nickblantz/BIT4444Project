@@ -48,14 +48,24 @@ if(isset($_POST['restaurant_redirect']) && $_POST['restaurant_redirect'] === 'tr
      <h4>Welcome to Indecisive Eats!</h4>
     </div>
     <div id="rotate" class="col-12">
-     <div id="ring"></div>
+     <div id="ring"><h4 class="justify-center" id="loader">Loading...</h4></div>
 	</div>
-	<div class="col-12 justify-center">
+	<div class="col-md-3 d-none d-md-block justify-center"></div>
+	<div class="col-6 col-md-3 justify-center">
+     <label>Radius (Miles)</label><input type="number" min=1 max=25 name="search_radius" />
+	</div>
+	<div class="col-6 col-md-3 justify-center">
+     <label>Price</label><input type="number" min=1 max=5 name="search_price" />
+	</div>
+	<div class="col-md-3 d-none d-md-block justify-center"></div>
+	<div class="col-md-3 d-none d-md-block justify-center"></div>
+	<div class="col-6 col-md-3 justify-center">
      <button id="go">Start spinning</button>
 	</div>
-	<div class="col-12 justify-center">
-     <button id="redir" style="display: none;" >Go to Restaurant</button>
+	<div class="col-6 col-md-3 justify-center">
+     <button id="redir" disabled >Go to Restaurant</button>
 	</div>
+	<div class="col-md-3 d-none d-md-block justify-center"></div>
    </div>
   <?php generate_main_end(); ?>
   <?php generate_header($page_name); ?>

@@ -1,10 +1,10 @@
 <?php
-$restricted_level = 3;
+$restricted_level = 1;
 $page_name = 'Restaurant Stats';
 require_once('../Resources/lib/session_controller.php');
 
 $connector = new MySQLConnector();
-$result = $connector -> query("SELECT * FROM `restaurant_stats` WHERE `restaurant_id` = '" . $_SESSION['active_restaurant']->restaurant_id . "'");
+$result = $connector -> query("SELECT * FROM `user_stats` WHERE `user_id` = '" . $_SESSION['active_user']->user_id . "'");
 $data = array();
 while($row = mysqli_fetch_assoc($result)) { $data[] = $row; }
 
@@ -39,11 +39,11 @@ for($i = 0; $i < sizeof($data); $i++) {
   <?php generate_main_beginning(); ?>
    <div class="row justify-content-center">
     <figure id="appearance-container" class="col-12 col-md-8 col-lg-6 figure m-3">
-     <h3>Search Appearances</h3>
+     <h3>Searches</h3>
       <svg id="search-svg" width="100%" height="200"></svg>
     </figure>
 	<figure id="skip-container" class="col-12 col-md-8 col-lg-6 figure m-3">
-	 <h3>Search Skips</h3>
+	 <h3>Skips</h3>
      <svg id="skips-svg" width="100%" height="200"></svg>
     </figure>
    </div>

@@ -31,7 +31,7 @@ if (isset($_POST['login_submit']) && $_POST['login_submit'] != "") {
 }
 
 if (isset($_POST['delete_account']) && $_POST['delete_account'] === "delete") {
-	header('location: ' . redirect_prefix('Account\DeleteConfirmation'));
+	header('location: DeleteConfirmation');
 }
 
 if (isset($_POST['account_submit']) && $_POST['account_submit'] != "") {
@@ -143,8 +143,8 @@ if (isset($_POST['account_submit']) && $_POST['account_submit'] != "") {
 	</div>
    </form>
    <br />
-   <form method="POST">
 	<div class="col-8 col-md-6 col-lg-4 mx-auto">
+	<form method="POST">
 	 <h4>Account Information</h4>
 	 <label>First Name:</label><input type="text" name="first_name" class="form-control" value="<?php echo $first_name; ?>"/>
      <label>Last Name:</label><input type="text" name="last_name" class="form-control" value="<?php echo $last_name; ?>" />
@@ -163,13 +163,20 @@ if (isset($_POST['account_submit']) && $_POST['account_submit'] != "") {
 	  <div class="col-6 justify-right">
        <input class="btn btn-secondary" type="reset" name="reset">
 	  </div>
+	  </form>
 	  <br /><br /><br />
-	  <div class="col-6 justify-center">
-	   <button class="btn btn-danger" name="delete_account" value="delete">Delete Account</button>
+	  <div class="col-6">
+	   <form method="POST" action="Stats">
+        <button class="btn btn-lg btn-primary" type="submit" name="stats_submit">View Statistics</button>
+       </form>
+	  </div>
+	  <div class="col-6 justify-right">
+	   <form method="POST">
+	    <button class="btn btn-danger" name="delete_account" value="delete">Delete Account</button>
+	   <form method="POST" action="Stats">
 	  </div>
 	 </div>
 	</div>
-   </form>
   <?php generate_main_end(); ?>
   <?php generate_header($page_name); ?>
   <?php generate_footer(); ?>

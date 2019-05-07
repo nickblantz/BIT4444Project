@@ -1,5 +1,6 @@
 const REEL_RADIUS = 175;
 var seed = 0;
+var skip = false;
 function prepareStyles() {
 	var style = '';
 	for (var i = 0; i < SLOTS_PER_REEL; i++) {
@@ -33,18 +34,36 @@ function spin(timer) {
 		.attr('class','ring spin-' + seed);
 }
 
+function statsOrchestrator(isSkip) {
+	console.log('stats skip: ' + isSkip);
+	$.post({
+		url: 'Resources/lib/stats_orchestrator.php',
+		data: {
+			restaurant_id: RESTAURANT_DATA[seed]['id'],
+			is_skip: isSkip
+			}
+	});
+}
+
 $(document).ready(function() {
-	prepareStyles();
-	createSlots();
+	setTimeout(function() {
+		$('#loader').remove();
+		prepareStyles();
+		createSlots();
+	}, 1000);
  	$('#go').on('click',function(){
+		if(skip) {
+			statsOrchestrator(1);
+		} else {
+			statsOrchestrator(0);
+		}
+		skip = true;
  		var timer = 3;
  		spin(timer);
 		setTimeout(function() {
-			$('#go').css("display", "none");
-			$('#redir').css("display", "inline");
-		}, 
-		timer * 1000);
-		
+			$('#redir').prop('disabled', false);
+			$('#go').text("Spin again");
+		}, timer * 1000);
  	})
 	
 	$('#redir').on('click',function(){
@@ -67,6 +86,5 @@ $(document).ready(function() {
 			}
 		});
  		$.redirectPost('index', {restaurant_redirect: 'true', restaurant_id: RESTAURANT_DATA[seed]['id']});
-		
 	})
  })

@@ -15,6 +15,10 @@ if ($_SESSION['active_restaurant']->local_img == 1) {
 	$restaurant_image = $_SESSION['active_restaurant']->image_url;
 }
 
+if (isset($_POST['unclaim_restaurant']) && $_POST['unclaim_restaurant'] === "delete") {
+	header('location: UnclaimConfirmation');
+}
+
 if(isset($_POST['restaurant_submit']) && $_POST['restaurant_submit'] != '') {
 	$phone_number = null;
 	$price = null;
@@ -142,6 +146,10 @@ if(isset($_POST['restaurant_submit']) && $_POST['restaurant_submit'] != '') {
     <br />
     <form method="POST" action="Stats">
      <button class="btn btn-lg btn-primary" type="submit" name="stats_submit">View Statistics</button>
+    </form>
+	<br />
+    <form method="POST">
+     <button class="btn btn-danger" name="unclaim_restaurant" value="delete">Unclaim Restaurant</button>
     </form>
    </div>
   <?php generate_main_end(); ?>
