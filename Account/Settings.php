@@ -116,7 +116,7 @@ if (isset($_POST['account_submit']) && $_POST['account_submit'] != "") {
  <body>
   <?php generate_main_beginning(); ?>
    <form method="POST">
-	<div class="col-8 col-md-6 col-lg-4 mx-auto">
+	<div class="col-8 col-md-6 col-lg-5 mx-auto">
 	 <h4>Login Information</h4>
 	 <label>Password:</label><input type="password" name="password" class="form-control" />
 	 <?php
@@ -143,7 +143,7 @@ if (isset($_POST['account_submit']) && $_POST['account_submit'] != "") {
 	</div>
    </form>
    <br />
-	<div class="col-8 col-md-6 col-lg-4 mx-auto">
+	<div class="col-8 col-md-6 col-lg-5 mx-auto">
 	<form method="POST">
 	 <h4>Account Information</h4>
 	 <label>First Name:</label><input type="text" name="first_name" class="form-control" value="<?php echo $first_name; ?>"/>

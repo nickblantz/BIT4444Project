@@ -1,6 +1,6 @@
 <?php
 $restricted_level = 1;
-$page_name = 'Delete Confirmation';
+$page_name = 'Unclaim Confirmation';
 require_once('../Resources/lib/session_controller.php');
 
 if (isset($_POST['confirm']) && $_POST['confirm'] === "true") {

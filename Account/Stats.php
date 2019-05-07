@@ -1,6 +1,6 @@
 <?php
 $restricted_level = 1;
-$page_name = 'Restaurant Stats';
+$page_name = 'My Stats';
 require_once('../Resources/lib/session_controller.php');
 
 $connector = new MySQLConnector();
