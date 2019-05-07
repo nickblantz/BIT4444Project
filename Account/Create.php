@@ -93,7 +93,7 @@ if (isset($_POST['create_submit']) && $_POST['create_submit'] != "") {
 		$username_error = is_username_taken($username);
 		if (!$password_character_error && !$password_match_error && !$username_error) {
 			User::create_account($username, $password, $is_owner, $first_name, $last_name, $phone_number, $email, $address_1, $address_2, $city, $state, $zipcode);
-			header('location: ' . redirect_prefix('Account/Login'));
+			header('location: ' . redirect_prefix('Account/Login.php'));
 		}
 	}
 }

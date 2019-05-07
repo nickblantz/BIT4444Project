@@ -45,13 +45,13 @@ function login($username, $password) {
 function logout() {
 	$_SESSION['active_user'] = null;
 	$_SESSION['active_restaurant'] = null;
-	header('location: ' . redirect_prefix('Account/Login'));
+	header('location: ' . redirect_prefix('Account/Login.php'));
 }
 
 // Pages for only unregistered sessions
 if ($restricted_level === -1) {
 	if(isset($_SESSION['active_user']) && $_SESSION['active_user'] != null) {
-		header('location: ' . redirect_prefix(''));
+		header('location: ' . redirect_prefix('index.php'));
 	}
 }
 // Pages for only registered sessions
@@ -60,19 +60,19 @@ elseif ($restricted_level >= 1) {
 		// Pages for only registered sessions who are owners
 		if ($restricted_level >= 2) {
 			if (!$_SESSION['active_user']->is_owner) {
-				header('location: ' . redirect_prefix(''));
+				header('location: ' . redirect_prefix('index.php'));
 			}
 			// Pages for only registered sessions who own a specific business
 			if ($restricted_level === 3) {
 				$connector = new MySQLConnector();
 				$restaurant_owner = mysqli_fetch_array($connector -> query("SELECT `owner_id` FROM `restaurant` WHERE `restaurant_id` = '" . $_SESSION['active_restaurant']->restaurant_id . "'"))['owner_id'];
 				if($_SESSION['active_user']->user_id != $restaurant_owner) {
-					header('location: ' . redirect_prefix('Restaurant/View'));
+					header('location: ' . redirect_prefix('Restaurant/View.php'));
 				}
 			}
 		}
 	} else {
-		header('location: ' . redirect_prefix('Account/Login'));
+		header('location: ' . redirect_prefix('Account/Login.php'));
 	}
 }
 ?>

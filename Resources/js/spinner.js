@@ -85,6 +85,6 @@ $(document).ready(function() {
 				$(form).appendTo('body').submit();
 			}
 		});
- 		$.redirectPost('index', {restaurant_redirect: 'true', restaurant_id: RESTAURANT_DATA[seed]['id']});
+ 		$.redirectPost('index.php', {restaurant_redirect: 'true', restaurant_id: RESTAURANT_DATA[seed]['id']});
 	})
  })

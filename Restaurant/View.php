@@ -4,7 +4,7 @@ $page_name = 'Restaurant View';
 require_once('../Resources/lib/session_controller.php');
 
 if (!isset($_SESSION['active_restaurant'])) {
-	header('location: ' . redirect_prefix(''));
+	header('location: ' . redirect_prefix('index.php'));
 }
 
 $restaurant_id = $_SESSION['active_restaurant']->restaurant_id;

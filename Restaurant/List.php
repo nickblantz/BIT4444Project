@@ -7,7 +7,7 @@ if(isset($_POST['rest_id']) && $_POST['rest_id'] != "") {
 	$connector = new MySQLConnector();
 	$result = mysqli_fetch_array($connector->query("SELECT * FROM `restaurant` WHERE `restaurant_id` = '" . $_POST['rest_id'] . "'"));
 	$_SESSION['active_restaurant'] = new Restaurant($result['restaurant_id'], $result['owner_id'], $result['name'], $result['local_img'], $result['image_url'], $result['phone_number'], $result['price'], $result['address_1'], $result['address_2'], $result['city'] , $result['state'], $result['zipcode']);
-	header('location: ' . redirect_prefix('Restaurant\Edit'));
+	header('location: ' . redirect_prefix('Restaurant\Edit.php'));
 }
 
 ?>

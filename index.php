@@ -8,7 +8,7 @@ if(isset($_POST['restaurant_redirect']) && $_POST['restaurant_redirect'] === 'tr
 	$yelper = new YelpConnector();
 	$result = $yelper -> restaurant_details($_POST['restaurant_id']);
 	$_SESSION['active_restaurant'] = new Restaurant($result['id'], null, $result['name'], 0, $result['image_url'], $result['display_phone'], $result['price'], $result['location']['address1'], $result['location']['address2'], $result['location']['city'] , $result['location']['state'], $result['location']['zip_code']);
-	header('location: ' . redirect_prefix('Restaurant/View'));
+	header('location: ' . redirect_prefix('Restaurant/View.php'));
 }
 ?>
 <!doctype html>

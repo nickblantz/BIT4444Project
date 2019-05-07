@@ -21,7 +21,7 @@ if (isset($_POST['login_submit']) && $_POST['login_submit'] != "") {
 	
 	if (!$error) {
 		if(login($username, $password)) {
-			header('location: ' . redirect_prefix(''));
+			header('location: ' . redirect_prefix('index.php'));
 		} else {
 			$password_error = true;
 		}

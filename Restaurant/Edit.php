@@ -16,7 +16,7 @@ if ($_SESSION['active_restaurant']->local_img == 1) {
 }
 
 if (isset($_POST['unclaim_restaurant']) && $_POST['unclaim_restaurant'] === "delete") {
-	header('location: UnclaimConfirmation');
+	header('location: UnclaimConfirmation.php');
 }
 
 if(isset($_POST['restaurant_submit']) && $_POST['restaurant_submit'] != '') {

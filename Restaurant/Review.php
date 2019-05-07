@@ -21,7 +21,7 @@ if (isset($_POST['review_submit']) && $_POST['review_submit'] != "") {
 	
 	if (!$error) {
 		Review::create_review($star_review, $text_review);
-		header('location: ' . redirect_prefix('Restaurant/View'));
+		header('location: ' . redirect_prefix('Restaurant/View.php'));
 	}
 }
 ?>

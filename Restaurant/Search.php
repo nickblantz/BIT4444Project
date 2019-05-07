@@ -11,7 +11,7 @@ if(isset($_POST['rest_id']) && $_POST['rest_id'] != "") {
 		$result = $yelp_connector -> restaurant_details($_POST['rest_id']);
 		
 		Restaurant::create_restaurant($result['id'], $_SESSION['active_user']->user_id, $result['name'], 0, $result['image_url'], $result['display_phone'], $result['price'], $result['location']['address1'], $result['location']['address2'], $result['location']['city'] , $result['location']['state'], $result['location']['zip_code']);
-		header('location: ' . redirect_prefix('Restaurant\Edit'));
+		header('location: ' . redirect_prefix('Restaurant\Edit.php'));
 	} else {
 		$claim_error = true;
 	}

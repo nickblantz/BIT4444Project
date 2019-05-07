@@ -5,9 +5,9 @@ require_once('../Resources/lib/session_controller.php');
 
 if (isset($_POST['confirm']) && $_POST['confirm'] === "true") {
 	User::delete_account();
-	header('location: ' . redirect_prefix(''));
+	header('location: ' . redirect_prefix('index.php'));
 } elseif (isset($_POST['confirm']) && $_POST['confirm'] === "false") {
-	header('location: ' . redirect_prefix('Account\Settings'));
+	header('location: ' . redirect_prefix('Account\Settings.php'));
 }
 ?>
 <!doctype html>

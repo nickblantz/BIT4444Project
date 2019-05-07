@@ -15,7 +15,7 @@ if (isset($_POST['comment_submit']) && $_POST['comment_submit'] != "") {
 	
 	if (!$error) {
 		Comment::create_comment($comment);
-		header('location: ' . redirect_prefix(''));
+		header('location: ' . redirect_prefix('index.php'));
 	}
 }
 ?>

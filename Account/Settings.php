@@ -31,7 +31,7 @@ if (isset($_POST['login_submit']) && $_POST['login_submit'] != "") {
 }
 
 if (isset($_POST['delete_account']) && $_POST['delete_account'] === "delete") {
-	header('location: DeleteConfirmation');
+	header('location: DeleteConfirmation.php');
 }
 
 if (isset($_POST['account_submit']) && $_POST['account_submit'] != "") {
