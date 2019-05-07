@@ -37,8 +37,9 @@ class Restaurant {
 	
 	public static function create_restaurant($restaurant_id, $owner_id, $name, $local_img, $image_url, $phone_number, $price, $address_1, $address_2, $city, $state, $zipcode) {
 		$connector = new MySQLConnector();
+		echo "INSERT INTO `restaurant` (`restaurant_id`, `owner_id`, `name`, `local_img`, `image_url`, `phone_number`, `price`, `address_1`, `address_2`, `city`, `state`, `zipcode`) VALUES ('" . $restaurant_id . "', " . $owner_id . ", '" . $name . "', " . $local_img . ", '" . $image_url . "', '" . $phone_number . "', '" . $price . "', '" . $address_1 . "', '" . $address_2 . "', '" . $city . "', '" . $state . "', '" . $zipcode . "')";
 		
-		$connector->query("INSERT INTO `restaurant` (`restaurant_id`, `owner_id`, `name`, `local_img`, `image_url`, `phone_number`, `price`, `address_1`, `address_2`, `city`, `state`, `zipcode`) VALUES ('" . $restaurant_id . "', '" . $owner_id . "', '" . $name . "', " . $local_img . ", '" . $image_url . "', '" . $phone_number . "', '" . $price . "', '" . $address_1 . "', '" . $address_2 . "', '" . $city . "', '" . $state . "', '" . $zipcode . "')");
+		$connector->query("INSERT INTO `restaurant` (`restaurant_id`, `owner_id`, `name`, `local_img`, `image_url`, `phone_number`, `price`, `address_1`, `address_2`, `city`, `state`, `zipcode`) VALUES ('" . $restaurant_id . "', " . $owner_id . ", '" . $name . "', " . $local_img . ", '" . $image_url . "', '" . $phone_number . "', '" . $price . "', '" . $address_1 . "', '" . $address_2 . "', '" . $city . "', '" . $state . "', '" . $zipcode . "')");
 		$_SESSION['active_restaurant'] = new Restaurant($restaurant_id, $owner_id, $name, $local_img, $image_url, $phone_number, $price, $address_1, $address_2, $city, $state, $zipcode);
 	}
 	
@@ -62,7 +63,7 @@ class Restaurant {
 	
 	public static function update_thumbnail($local_img, $image_url) {
 		$connector = new MySQLConnector();
-		$connector->query("UPDATE `restaurant` SET `local_img` = " . $local_img . ", `image_url` = '" . $image_url . "'");
+		$connector->query("UPDATE `restaurant` SET `local_img` = " . $local_img . ", `image_url` = '" . $image_url . "' WHERE `restaurant_id` = '" . $_SESSION['active_restaurant']->restaurant_id . "'");
 		$_SESSION['active_restaurant']->local_img = $local_img;
 		$_SESSION['active_restaurant']->image_url = $image_url;
 	}
