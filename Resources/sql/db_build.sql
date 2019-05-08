@@ -65,6 +65,7 @@ CREATE TABLE `review` (
 
 CREATE TABLE `comment` (
  `comment_id` INT NOT NULL AUTO_INCREMENT,
+ `uid` VARCHAR(13) NOT NULL,
  `timestamp` DATETIME NOT NULL,
  `comment` VARCHAR(8192) NOT NULL,
  PRIMARY KEY (`comment_id`)
